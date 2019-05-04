@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(txt|css|js|jpg|jpeg|png|gif|ico)$
+RewriteRule ^ index.php [QSA,L]
