@@ -50,7 +50,7 @@
                 Framework</a>).</p>
         <p>This page rendered using <strong>index.tpl</strong> via <strong>homeController.php</strong> file. You can
             <strong>delete</strong> these files and make a fresh start. Also, you can reach our documentation via <a
-                    href="https://www.slimmvc.com/docs/" target="_blank">this link</a>. <br><strong>Included
+                    href="https://www.slimmvc.com/docs" target="_blank">this link</a>. <br><strong>Included
                 packages:</strong></p>
         <p class="mt-5"><pre class="p-3"><code>{$composer}</code></pre></p>
     </div>
@@ -62,7 +62,7 @@
                                         target="_blank">SlimMVC</a> <sup>{$version}</sup></span>
         </div>
         <div class="float-right">
-            <span class="text-muted"><a href="https://www.slimmvc.com/docs/" target="_blank">Documentation</a> </span>
+            <span class="text-muted"><a href="https://www.slimmvc.com/docs" target="_blank">Documentation</a> </span>
         </div>
     </div>
 </footer>
