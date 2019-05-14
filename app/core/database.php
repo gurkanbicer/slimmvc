@@ -9,17 +9,24 @@ use SlimFacades\Settings;
             parent::__construct();
         }
 
-        public function connectTo($database = "default") {
+        public function connectTo($configKey = "default", $connectionName = "") {
             try {
-                if (empty($database))
-                    throw new Exception(0);
+                if (empty($configKey)
+                    or !is_string($configKey)
+                    or $configKey == "")
+                    throw new Exception('Database::connectTo - configKey parameter is wrong or empty.');
 
-                $info = Settings::get()['database'][$database];
+                if ($connectionName == ""
+                    or !is_string($connectionName))
+                    $connectionName = $configKey;
 
-                if (empty($info) || !is_array($info))
-                    throw new Exception('Database configuration variable is empty or isn\'t an array.');
+                $databaseConfig = Settings::get()['database'][$configKey];
 
-                $this->addConnection($info);
+                if (empty($databaseConfig)
+                    or !is_array($databaseConfig))
+                    throw new Exception('Database::connectTo - Database configuration variable is wrong or empty.');
+
+                $this->addConnection($databaseConfig, $connectionName);
                 $this->setAsGlobal();
                 $this->bootEloquent();
 
@@ -31,12 +38,17 @@ use SlimFacades\Settings;
             }
         }
 
-        public function quickConnect($info = []) {
+        public function quickConnect($databaseConfig = [], $connectionName = "") {
             try {
-                if (empty($info) || !is_array($info))
-                    throw new Exception('Database configuration variable is empty or isn\'t an array.');
+                if (empty($databaseConfig)
+                    or !is_array($databaseConfig))
+                    throw new Exception('Database::connectTo - Database configuration variable is wrong or empty.');
 
-                $this->addConnection($info);
+                if ($connectionName == ""
+                    or !is_string($connectionName))
+                    $connectionName = $databaseConfig['database'];
+
+                $this->addConnection($databaseConfig, $connectionName);
                 $this->setAsGlobal();
                 $this->bootEloquent();
 
