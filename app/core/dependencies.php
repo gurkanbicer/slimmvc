@@ -40,8 +40,8 @@ $container['helper'] = function() {
 };
 
 # adding database structure to DI
-$container['database'] = function($container) {
-    $database = new Database($container);
+$container['database'] = function() {
+    $database = new Database();
     return $database;
 };
 

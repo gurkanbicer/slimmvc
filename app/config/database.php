@@ -2,12 +2,12 @@
 
 $configuration['settings']['database']['default'] = [
     'driver' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'test',
-    'username' => 'root',
-    'password' => 'Gurkan123a!!',
+    'host' => 'MYSQLHOSTNAME',
+    'database' => 'MYSQLDATABASE',
+    'username' => 'MYSQLUSERNAME',
+    'password' => 'MYSQLPASSWORD',
     'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
+    'collation' => 'utf8_general_ci',
     'prefix' => '',
 ];
 

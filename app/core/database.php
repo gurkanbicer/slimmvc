@@ -1,14 +1,12 @@
 <?php
 use Illuminate\Database\Capsule\Manager as Capsule;
+use SlimFacades\Container;
 use SlimFacades\Settings;
 
     Class Database Extends Capsule {
 
-        private $c;
-
-        public function __construct($container) {
+        public function __construct() {
             parent::__construct();
-            $this->c = $container;
         }
 
         public function connectTo($database = "default") {
@@ -28,9 +26,28 @@ use SlimFacades\Settings;
                 return $this;
 
             } catch (Exception $e) {
+                Container::get('logger')->error($e->getMessage());
                 return false;
             }
         }
+
+        public function quickConnect($info = []) {
+            try {
+                if (empty($info) || !is_array($info))
+                    throw new Exception('Database configuration variable is empty or isn\'t an array.');
+
+                $this->addConnection($info);
+                $this->setAsGlobal();
+                $this->bootEloquent();
+
+                return $this;
+
+            } catch (Exception $e) {
+                Container::get('logger')->error($e->getMessage());
+                return false;
+            }
+        }
+
     }
 
 /* path: ~app/core/database.php */
